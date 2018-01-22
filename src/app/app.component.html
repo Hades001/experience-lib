@@ -1,0 +1,36 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<nz-layout class="layout">
+    <nz-header>
+        快反系统
+    </nz-header>
+    <nz-layout>
+        <nz-sider [nzWidth]="200" style="background:#fff; height:100%">
+            <ul nz-menu [nzMode]="'inline'" style="height:100%">
+                <li nz-submenu>
+                    <span title><i class="anticon anticon-user"></i>所有问题</span>
+                    <ul>
+                        <li nz-menu-item routerLink="/registe-problem" routerLinkActive="active">问题登记</li>
+                        <li nz-menu-item>未解决</li>
+                        <li nz-menu-item>已解决</li>
+                        <li nz-menu-item routerLink="/experience-list" routerLinkActive="active">待处理问题</li>
+                        <li nz-menu-item routerLink="/experience-list" routerLinkActive="active">经验教训库</li>
+                    </ul>
+                <li nz-submenu>
+                    <span title><i class="anticon anticon-laptop"></i>subnav 2</span>
+                    <ul>
+                        <li nz-menu-item>option5</li>
+                        <li nz-menu-item>option6</li>
+                        <li nz-menu-item>option7</li>
+                        <li nz-menu-item>option8</li>
+                    </ul>
+                </li>
+            </ul>
+        </nz-sider>
+        <nz-content style="background:#fff; padding: 24px; min-height: 280px;">
+            <router-outlet></router-outlet>
+        </nz-content>
+    </nz-layout>
+</nz-layout>
+
+

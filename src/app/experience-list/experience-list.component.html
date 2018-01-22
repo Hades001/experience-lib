@@ -1,0 +1,76 @@
+<button nz-button [nzType]="'primary'">test button</button>
+<nz-table #nzTable [nzAjaxData]="lessonList" [nzPageSize]="10">
+  <thead nz-thead>
+    <tr>
+      <th nz-th nzExpand></th>
+      <th nz-th><span>序号</span></th>
+      <th nz-th><span>开发阶段</span></th>
+      <th nz-th><span>工艺</span></th>
+      <th nz-th><span>产品结构</span></th>
+      <th nz-th><span>产品名称</span></th>
+      <th nz-th><span>顾客</span></th>
+      <th nz-th><span>问题类别</span></th>
+      <th nz-th><span>问题库编号</span></th>
+      <th nz-th><span>问题描述</span></th>
+      <th nz-th><span>不良类型</span></th>
+      <th nz-th><span>经验总结</span></th>
+    </tr>
+  </thead>
+  <tbody nz-tbody>
+  <ng-template ngFor let-data [ngForOf]="nzTable.data">
+    <tr nz-tbody-tr>
+      <td nz-td nzExpand>
+        <nz-row-expand-icon [(nzExpand)]="data.expand"></nz-row-expand-icon>
+      </td>
+      <td nz-td>{{data.serial_no}}</td>
+      <td nz-td>{{data.dev_stage}}</td>
+      <td nz-td>{{data.man_tech}}</td>
+      <td nz-td>{{data.prd_arch}}</td>
+      <td nz-td>{{data.prd_name}}</td>
+      <td nz-td>{{data.customer}}</td>
+      <td nz-td>{{data.problem_type}}</td>
+      <td nz-td>{{data.problem_no}}</td>
+      <td nz-td>{{data.problem_desc}}</td>
+      <td nz-td>{{data.problem_type1}}</td>
+      <td nz-td>{{data.addon.addon1}}</td>
+    </tr>
+    <tr nz-tbody-tr *ngIf="data.expand">
+      <td nz-td></td>
+      <td nz-td>人</td>
+      <td nz-td colspan="5">{{data.ren[0]}}</td>
+      <td nz-td colspan="5">
+        {{data.ren[1]}}
+      </td>
+    </tr>
+    <tr nz-tbody-tr *ngIf="data.expand">
+      <td nz-td></td>
+      <td nz-td>机</td>
+      <td nz-td colspan="5">{{data.ji[0]}}</td>
+      <td nz-td colspan="5">{{data.ji[1]}}</td>
+
+    </tr>
+    <tr nz-tbody-tr *ngIf="data.expand">
+      <td nz-td></td>
+      <td nz-td>料</td>
+      <td nz-td colspan="5">{{data.liao[0]}}</td>
+      <td nz-td colspan="5">{{data.liao[1]}}</td>
+
+    </tr>
+    <tr nz-tbody-tr *ngIf="data.expand">
+      <td nz-td></td>
+      <td nz-td>法</td>
+      <td nz-td colspan="5">{{data.fa[0]}}</td>
+      <td nz-td colspan="5">{{data.fa[1]}}</td>
+
+    </tr>
+    <tr nz-tbody-tr *ngIf="data.expand">
+      <td nz-td></td>
+      <td nz-td>环</td>
+      <td nz-td colspan="5">检验标准不明确.因为正常的检验流程无法发现此类缺陷。需要在特定角度面料张力加大时才能看出。</td>
+      <td nz-td colspan="5">1、重新制定新的检验标准,增加面料斜向拉伸的检验方式。
+        2、后续若此检验方式长期验证有效，增加到我司入厂检验外观标准里。--8.30</td>
+
+    </tr>
+  </ng-template>
+  </tbody>
+</nz-table>
