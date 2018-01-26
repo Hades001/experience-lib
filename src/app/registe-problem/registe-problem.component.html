@@ -1,5 +1,5 @@
 <h1>问题登记</h1>
-<form nz-form >
+<form nz-form [formGroup]="problemForm" novalidate>
   <div nz-row [nzGutter]="40">
     <div nz-col [nzSpan]="8">
       <div nz-form-item nz-row>
@@ -7,7 +7,10 @@
           <label [attr.for]="source">问题来源</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="19">
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'问题来源'" [nzId]="source" [(ngModel)]="problem.from_src" name="source" required></nz-input>
+          <nz-select [nzSize]="'large'" [nzPlaceHolder]="'问题来源'" formControlName="from_src">
+            <nz-option [nzLabel]="'内部'" [nzValue]="'内部'"></nz-option>
+            <nz-option [nzLabel]="'外部'" [nzValue]="'外部'"></nz-option>
+          </nz-select>
         </div>
       </div>
     </div>
@@ -18,7 +21,7 @@
           <label [attr.for]="dep">来源部门</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="19">
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'来源部门'" [nzId]="dep" [(ngModel)]="problem.from_depart" name="from_depart"></nz-input>
+          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'来源部门'" [nzId]="from_depart" formControlName="from_depart"></nz-input>
         </div>
       </div>
     </div>
@@ -28,7 +31,7 @@
           <label [attr.for]="dep">上板日期</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="19">
-          <nz-datepicker [nzPlaceHolder]="'select date'" [nzFormat]="'YYYY-MM-DD'"></nz-datepicker>
+          <nz-datepicker [nzPlaceHolder]="'select date'" [nzFormat]="'YYYY-MM-DD'"  formControlName="commit_date"></nz-datepicker>
         </div>
       </div>
     </div>
@@ -41,7 +44,7 @@
           <label>发生日期</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="19">
-          <nz-datepicker [nzSize]="'large'" [nzFormat]="'YYYY-MM-DD'"></nz-datepicker>
+          <nz-datepicker [nzSize]="'large'" [nzFormat]="'YYYY-MM-DD'" formControlName="problem_date"></nz-datepicker>
         </div>
       </div>
     </div>
@@ -51,7 +54,7 @@
           <label>产品名称</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="19">
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'产品名称'"></nz-input>
+          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'产品名称'" formControlName="production_name"></nz-input>
         </div>
       </div>
     </div>
@@ -61,9 +64,127 @@
           <label>缺陷描述</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="19">
-          <nz-input [nzSize]="'large'" [nzType]="'textarea'" [nzAutosize]="true" [nzPlaceHolder]="'缺陷描述'"></nz-input>
+          <nz-input [nzSize]="'large'" [nzType]="'textarea'" [nzAutosize]="true" [nzPlaceHolder]="'缺陷描述'" formControlName="problem_desc"></nz-input>
         </div>
       </div>
     </div>
   </div>
+
+  <div nz-row [nzGutter]="40">
+    <div nz-col [nzSpan]="8">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+          <label>缺陷类型</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19">
+          <nz-select [nzSize]="'large'" [nzPlaceHolder]="'选择缺陷类型'" formControlName="problem_type" nzAllowClear>
+            <nz-option *ngFor="let option of typeOptions"
+                       [nzLabel]="option.label"
+                       [nzValue]="option.value"
+                       [nzDisabled]="option.disabled">
+
+            </nz-option>
+          </nz-select>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col [nzSpan]="8">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+          <label>数量</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19">
+          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'数量'"  formControlName="count"></nz-input>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col [nzSpan]="8">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+          <label>批次号</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19">
+          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'批次号'"  formControlName="problem_batch"></nz-input>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div nz-row [nzGutter]="40">
+    <div nz-col [nzSpan]="8">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+          <label>发生工位</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19">
+          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'发生工位'" formControlName="pos1"></nz-input>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col [nzSpan]="8">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+          <label>短期措施责任人</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19">
+          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'短期措施责任人'"  formControlName="short_man"></nz-input>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col [nzSpan]="8">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+          <label>流出措施责任人</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19">
+          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'流出措施责任人'"  formControlName="out_man"></nz-input>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div nz-row [nzGutter]="40">
+    <div nz-col [nzSpan]="8">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+          <label>产生措施责任人</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19">
+          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'产生措施责任人'" formControlName="make_man"></nz-input>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col [nzSpan]="8">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+          <label>跟踪人</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19">
+          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'跟踪人'"  formControlName="follow_man"></nz-input>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col [nzSpan]="8">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+          <label>是否重复发生</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19">
+          <nz-select [nzSize]="'large'"   formControlName="is_repeat">
+            <nz-option [nzLabel]="'是'" [nzValue]="true"></nz-option>
+            <nz-option [nzLabel]="'否'" [nzValue]="false"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p>{{problemForm.value | json}}</p>
+
 </form>

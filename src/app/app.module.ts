@@ -6,7 +6,7 @@ import {ExperienceService} from './experience.service';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisteProblemComponent } from './registe-problem/registe-problem.component';
 
@@ -21,6 +21,7 @@ import { RegisteProblemComponent } from './registe-problem/registe-problem.compo
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
