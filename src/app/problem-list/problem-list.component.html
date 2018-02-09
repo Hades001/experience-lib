@@ -1,0 +1,31 @@
+<nz-table #nzTable
+          [nzAjaxData]="_dataSet"
+          [nzLoading]="_loading">
+  <thead nz-thead>
+  <tr>
+    <th nz-th><span>序号</span></th>
+    <th nz-th><span>问题状态</span></th>
+    <th nz-th><span>下次汇报时间</span></th>
+    <th nz-th><span>备注</span></th>
+    <th nz-th><span>问题来源</span></th>
+    <th nz-th><span>上板日期</span></th>
+    <th nz-th><span>发生日期</span></th>
+    <th nz-th><span>是否重复发生</span></th>
+    <th nz-th><span>问题描述</span></th>
+    <th nz-th><span>延误次数</span></th>
+    <th nz-th><span>短期措施</span></th>
+    <th nz-th><span>短期措施效果</span></th>
+    <th nz-th><span>流出原因</span></th>
+    <th nz-th><span>流出措施</span></th>
+    <th nz-th><span>产生原因</span></th>
+    <th nz-th><span>产生措施</span></th>
+    <th nz-th><span>分层审核确认</span></th>
+    <th nz-th><span>长期措施效果验证</span></th>
+    <th nz-th><span>水平展开</span></th>
+  </tr>
+  </thead>
+  <tbody nz-tbody>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+
+  </tbody>
+</nz-table>

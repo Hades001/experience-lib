@@ -9,6 +9,16 @@ const PROXY_CONFIG = [
     secure: false,
     logLevel: "debug",
     changeOrigin: true
+  },
+  {
+    context: [
+      "/primary",
+      "/scanner"
+    ],
+    target: "http://10.192.2.239:8000/",
+    secure: false,
+    logLevel: "debug",
+    changeOrigin: true
   }
 
 ];

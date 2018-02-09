@@ -22,12 +22,12 @@ export class ExperienceService {
 
   GetObjectTest(param1: string): Observable<any> {
     let pms = new HttpParams();
-    pms = pms.append( "p1", param1)
-    return this.http.get( "testurl", {params: pms});
+    pms = pms.append( 'p1', param1);
+    return this.http.get( 'testurl', {params: pms});
 
   }
   GetExperience(): Observable<any> {
-    let experiences: IExperience[] = [];
+    const experiences: IExperience[] = [];
     this.GetLessons().subscribe((data) => {
       const lessonList: any = data._items;
       for (const lesson of data._items)

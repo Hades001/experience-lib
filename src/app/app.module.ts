@@ -9,6 +9,9 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisteProblemComponent } from './registe-problem/registe-problem.component';
+import {ProblemService} from './problem.service';
+import {DatePipe} from '@angular/common';
+import { ProblemListComponent } from './problem-list/problem-list.component';
 
 
 
@@ -16,7 +19,8 @@ import { RegisteProblemComponent } from './registe-problem/registe-problem.compo
   declarations: [
     AppComponent,
     ExperienceListComponent,
-    RegisteProblemComponent
+    RegisteProblemComponent,
+    ProblemListComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,7 @@ import { RegisteProblemComponent } from './registe-problem/registe-problem.compo
     NgZorroAntdModule.forRoot()
 
   ],
-  providers: [ExperienceService],
+  providers: [ExperienceService, ProblemService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
